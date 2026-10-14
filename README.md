@@ -32,8 +32,8 @@ A RESTful backend API built with **FastAPI** and **MongoDB** for employee manage
 ### 1. Clone the repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd <YOUR_PROJECT_FOLDER>
+git clone https://github.com/MousumiBadyakar/employee-attendance-analytics-api.git
+cd employee-attendance-analytics-api
 ```
 
 ### 2. Create and activate a virtual environment
