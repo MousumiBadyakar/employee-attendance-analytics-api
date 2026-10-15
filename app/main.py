@@ -501,10 +501,27 @@ def punch_out(body: PunchOutIn):
     )
 
     if record is None:
+        # Check whether an open punch-in exists after the requested time.
+        future_record = db.attendance_logs.find_one(
+            {
+                "emp_code": body.emp_code,
+                "punch_in": {"$ne": None, "$gt": ts},
+                "punch_out": None,
+            },
+            sort=[("punch_in", 1)],
+        )
+
+        if future_record is not None:
+            raise HTTPException(
+                status_code=422,
+                detail="Punch-out must be after punch-in",
+            )
+
         raise HTTPException(
             status_code=404,
             detail="No punch-in found for this timestamp",
         )
+
 
     # 4. Reject an attendance record that is already closed.
     if record.get("punch_out") is not None:
