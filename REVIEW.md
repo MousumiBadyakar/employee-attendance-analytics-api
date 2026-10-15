@@ -31,3 +31,14 @@
 - Unknown employees return `404` for employee monthly analytics.
 - The tested attendance and analytics endpoints returned the expected response structures.
 - The tested concurrency scenarios returned conflict responses rather than server errors.
+
+## Pending Investigation
+
+| Where | Observed behavior | Status |
+|---|---|---|
+| `POST /attendance/punch-out` | A punch-out request with a timestamp earlier than the recorded punch-in returned `404` with `No punch-in found for this timestamp`. | Pending review against the assignment's required validation behavior. No code change made yet. |
+
+## Verification Limitations
+
+- Query plans were inspected using the current development dataset. This confirms observed index usage for the tested queries, but does not establish performance at 100,000 records.
+- Concurrency tests covered simultaneous punch-in, punch-out, and regularization requests. They returned conflict responses rather than server errors in the tested cases.
