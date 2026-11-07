@@ -2,6 +2,12 @@
 
 A RESTful backend built with **FastAPI** and **MongoDB** for employee management, attendance tracking, attendance regularization, and workforce analytics.
 
+## 🚀 Live Deployment
+
+- **Live API:** https://employee-attendance-analytics-api-6iom.onrender.com
+- **Swagger UI:** https://employee-attendance-analytics-api-6iom.onrender.com/docs
+- **ReDoc:** https://employee-attendance-analytics-api-6iom.onrender.com/redoc
+
 ## Features
 
 - **Employee Management:** Create and list employees with department filtering and pagination.
@@ -16,10 +22,13 @@ A RESTful backend built with **FastAPI** and **MongoDB** for employee management
 
 - **Language:** Python
 - **Framework:** FastAPI
-- **Database:** MongoDB
+- **Database:** MongoDB Atlas
+- **Database Driver:** PyMongo
 - **Validation:** Pydantic
 - **API Documentation:** Swagger UI and ReDoc
 - **Testing:** HTTPX and concurrent request testing
+- **Deployment:** Render
+- **Version Control:** Git and GitHub
 
 ## Prerequisites
 
@@ -33,6 +42,7 @@ A RESTful backend built with **FastAPI** and **MongoDB** for employee management
 
 ```bash
 git clone https://github.com/MousumiBadyakar/employee-attendance-analytics-api.git
+
 cd employee-attendance-analytics-api
 ```
 
@@ -42,13 +52,13 @@ cd employee-attendance-analytics-api
 python -m venv .venv
 ```
 
-Windows PowerShell:
+**Windows PowerShell:**
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
-Windows Command Prompt:
+**Windows Command Prompt:**
 
 ```cmd
 .venv\Scripts\activate.bat
@@ -62,21 +72,16 @@ python -m pip install -r requirements.txt
 
 ### 4. Configure environment variables
 
-Set the following environment variables in your terminal, or create a `.env` file if the application is configured to load one:
+Create a `.env` file in the project root:
 
 ```env
 MONGO_URI=mongodb://localhost:27017
 MONGO_DB=attendance_db
 ```
 
-For PowerShell, you can set them for the current session with:
+For MongoDB Atlas, replace the local MongoDB URI with your Atlas connection string.
 
-```powershell
-$env:MONGO_URI="mongodb://localhost:27017"
-$env:MONGO_DB="attendance_db"
-```
-
-Use your own MongoDB connection URI if your database is hosted remotely. Never commit credentials or secrets.
+**Important:** Never commit database credentials or environment secrets to GitHub.
 
 ### 5. Start the API
 
@@ -94,6 +99,31 @@ The API will be available at:
 - **Swagger UI:** http://127.0.0.1:8000/docs
 - **ReDoc:** http://127.0.0.1:8000/redoc
 
+## Deployment on Render
+
+The application is deployed as a Python Web Service on **Render**, using **MongoDB Atlas** as its cloud database.
+
+### Deployment Configuration
+
+| Configuration | Value |
+|---|---|
+| Runtime | Python 3 |
+| Build Command | `pip install -r requirements.txt` |
+| Start Command | `uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
+| Database | MongoDB Atlas |
+| Hosting Platform | Render |
+
+### Environment Variables
+
+Configure the following variables in the Render dashboard:
+
+| Variable | Description |
+|---|---|
+| `MONGO_URI` | MongoDB Atlas connection string |
+| `MONGO_DB` | Database name (`attendance_db`) |
+
+Once deployed, access the interactive API documentation through the live Swagger URL.
+
 ## Documentation
 
 Use Swagger UI to explore endpoints, inspect request and response schemas, and test API operations.
@@ -109,3 +139,13 @@ Use Swagger UI to explore endpoints, inspect request and response schemas, and t
 - A unique employee-and-date constraint prevents duplicate attendance records.
 - Database indexes are initialized by the application.
 - API timestamps are represented as Unix epoch milliseconds.
+- Derived attendance fields are calculated by the backend.
+- Attendance regularization preserves the modification history.
+
+## Author
+
+**Mousumi Badyakar**
+
+---
+
+⭐ If you find this project interesting, consider giving the repository a star!
