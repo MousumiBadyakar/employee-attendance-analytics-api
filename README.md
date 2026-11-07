@@ -4,9 +4,7 @@ A RESTful backend built with **FastAPI** and **MongoDB** for employee management
 
 ## 🚀 Live Deployment
 
-- **Live API:** https://employee-attendance-analytics-api-6iom.onrender.com
 - **Swagger UI:** https://employee-attendance-analytics-api-6iom.onrender.com/docs
-- **ReDoc:** https://employee-attendance-analytics-api-6iom.onrender.com/redoc
 
 ## Features
 
